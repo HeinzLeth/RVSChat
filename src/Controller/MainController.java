@@ -102,11 +102,16 @@ public class MainController implements MainView.TestListener {
     }
 
     @Override
-    public void doIt() {
+    public void connectToServer() {
         connect();
         loginToServer();
         if(connected)
             askForClientTable();
+    }
+
+    @Override
+    public void sendMessage(String message) {
+        
     }
 
 }

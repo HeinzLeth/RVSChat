@@ -11,10 +11,16 @@ import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-public class MainView extends JFrame {
+public class MainView extends JFrame implements ChatPanel.MessageSend{
+
+    @Override
+    public void sendMessage(String message) {
+        listener.sendMessage(message);
+    }
     
     public interface TestListener{
-        public void doIt();
+        public void connectToServer();
+        public void sendMessage(String message);
     }
     
     public void registerListener(TestListener listener){
@@ -90,7 +96,7 @@ public class MainView extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 showChatPanel();
-                listener.doIt();
+                listener.connectToServer();
             }
         });
 
@@ -105,7 +111,7 @@ public class MainView extends JFrame {
                 setLocationRelativeTo(null);
             }
         });
-
+        
         login.tfIP.getDocument().addDocumentListener(new DocumentHandler());
         login.tfUser.getDocument().addDocumentListener(new DocumentHandler());
         login.tfPort.getDocument().addDocumentListener(new DocumentHandler());

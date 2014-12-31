@@ -41,7 +41,7 @@ public class Chat extends JPanel {
 		add(pList, BorderLayout.WEST);
 		
 		list = new JList<String>();
-		// L�nge der Clientliste des Servers
+		// Länge der Clientliste des Servers
 		list.setVisibleRowCount(10);
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		list.setBorder(UIManager.getBorder("List.focusCellHighlightBorder"));
@@ -96,5 +96,10 @@ public class Chat extends JPanel {
 		this.users = users;
 		updateTable();
 	}
+
+    public LinkedList<ChatPanel> getCp() {
+        return cp;
+    }
+        
 
 }

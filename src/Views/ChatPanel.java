@@ -10,10 +10,20 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class ChatPanel extends JPanel {
 	
+    public interface MessageSend{
+        public void sendMessage(String message);        
+    }
+    
+    public void registerListener(MessageSend messageSend){
+        this.messageSend = messageSend;
+    }
 	JTextField tfText;
+        MessageSend messageSend;
 	
 	/**
 	 * Create the panel.
@@ -39,6 +49,13 @@ public class ChatPanel extends JPanel {
 		
 		JButton bSend = new JButton("Senden");
 		pTextnSend.add(bSend);
+                bSend.addActionListener(new ActionListener() {
+
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        messageSend.sendMessage(tfText.getText());
+                    }
+                });
 	}
 
 }
